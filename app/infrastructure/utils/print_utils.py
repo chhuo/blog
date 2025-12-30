@@ -2,11 +2,14 @@
 import sys
 import os
 from datetime import datetime
+from . import PROJECT_ROOT
 
 # 保存原生print
 native_print = print
-# 日志文件路径（基于项目根目录）
-LOG_PATH = os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(__file__))), "app.log")
+
+# 2. 定义日志目录和文件路径/
+LOG_DIR = os.path.join(PROJECT_ROOT, "logs")
+LOG_FILE = os.path.join(LOG_DIR, f"{datetime.now().strftime("%Y-%m-%d")}.log")
 
 
 def custom_print(*args, **kwargs):
@@ -17,10 +20,12 @@ def custom_print(*args, **kwargs):
 
     # 控制台输出
     native_print(output, **kwargs)
+
+    # 3. 确保logs目录存在（首次运行自动创建）
+    if not os.path.exists(LOG_DIR):
+        os.makedirs(LOG_DIR)
+
     # 日志文件输出（追加模式，utf-8编码）
-    with open(LOG_PATH, "a", encoding="utf-8") as f:
+    with open(LOG_FILE, "a", encoding="utf-8") as f:
         f.write(f"{output}\n")
 
-
-# 替换全局print
-sys.modules['builtins'].print = custom_print

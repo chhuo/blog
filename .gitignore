@@ -1,4 +1,6 @@
 logs
+.log
 .venv
 .env
 .idea
+.cpython-313.pyc
