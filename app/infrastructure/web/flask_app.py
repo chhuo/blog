@@ -11,7 +11,7 @@ def create_flask_app() -> Flask:
     # 2. 从配置中读取参数（依赖基础设施层的配置工具）
     app.config["SECRET_KEY"] = CONFIG.SECRET_KEY
     app.config["DEBUG"] = CONFIG.FLASK_DEBUG
-    app.config["DATABASE_URL"] = CONFIG.DATABASE_URL
+    # app.config["DATABASE_URL"] = CONFIG.DATABASE_URL
 
     # 3. 可扩展：注册全局中间件、异常处理器等（框架级逻辑）
     # app.before_request(xxx)

@@ -1,0 +1,25 @@
+server:
+    host: 0.0.0.0
+    port: 8000
+    reload: true
+    workers: 1
+log:
+    level: DEBUG
+    path: D:\project\blog\logs
+    use_json: false
+    backup_count: 15
+    max_bytes: 20971520
+dependencies:
+    check_db: true
+waitress:
+    host: 0.0.0.0
+    port: 8000
+    threads: 8
+    connection_limit: 1000
+    access_log_path: ./waitress/waitress_access.log
+    error_log_path: ./waitress/waitress_error.log
+process_pool:
+    wsgi_process_num: 1
+    check_interval: 5
+    resource_warning_cpu: 80
+    resource_warning_mem: 90
